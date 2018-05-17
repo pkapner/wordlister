@@ -1,26 +1,24 @@
 <%@ page import="com.uestechnology.WordLister" %>
 <%@ page import="java.util.Set" %>
-<
-
+<%@ page import="com.uestechnology.SetType" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Wordlister</title>
 </head>
 <body>
 
 <%
 
-    if (request.getParam("letters") != null) {
-        String letters = request.getParam("letters");
-        Set<String> words = WordLister.getWords(letters, false); // only find common words
+    if (request.getParameter("letters") != null) {
+        String letters = request.getParameter("letters");
+        Set<String> words = WordLister.getWords(letters, SetType.LONG); // only find common words
 
         for (String word : words) {
             out.println(word);
             out.println("<br>");
         }
     }
-
 %>
 
 </body>
