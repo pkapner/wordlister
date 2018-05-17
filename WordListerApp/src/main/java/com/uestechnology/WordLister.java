@@ -34,7 +34,7 @@ public class WordLister {
         this.letters = letters;
     }
 
-    private WordLister() throws IOException {
+    public WordLister() throws IOException {
         letters = null;
         prePopulateExecutorService = Executors.newFixedThreadPool(8);
         populateCache();
@@ -44,7 +44,7 @@ public class WordLister {
         loadWords();
     }
 
-    private void setLetters(String letters) {
+    public void setLetters(String letters) {
         this.letters = letters;
     }
 
@@ -180,7 +180,7 @@ public class WordLister {
         }
     }
 
-    private Set<String> findCombos(SetType setType) throws InterruptedException {
+    public Set<String> findCombos(SetType setType) throws InterruptedException {
         Set<String> allCombos = new LinkedHashSet<>();
         for (int i = 3; i <= letters.length(); i++) {
             allCombos.addAll(findAllCombos(i, setType));
