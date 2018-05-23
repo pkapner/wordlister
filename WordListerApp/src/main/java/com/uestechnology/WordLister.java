@@ -34,14 +34,18 @@ public class WordLister {
         this.letters = letters;
     }
 
-    public WordLister() throws IOException {
+    public WordLister() {
         letters = null;
         prePopulateExecutorService = Executors.newFixedThreadPool(8);
         populateCache();
         validWordsShort = new TreeSet<>();
         validWordsMedium = new TreeSet<>();
         validWordsLong = new TreeSet<>();
-        loadWords();
+        try {
+            loadWords();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setLetters(String letters) {
@@ -138,7 +142,7 @@ public class WordLister {
                     WordLister.displayLongWords(commonCombos, moreCombos, allCombos);
                 }
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
