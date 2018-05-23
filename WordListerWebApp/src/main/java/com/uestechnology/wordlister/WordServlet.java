@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class WordServlet extends HttpServlet {
 
-    private WordLister wordLister = new WordLister();
+    static final private WordLister wordLister = new WordLister();
 
     private StringBuilder displayWords(Set<String> shortWords, Set<String> medWords, Set<String> longWords, SetType type) {
         StringBuilder sb = new StringBuilder();
@@ -40,7 +40,7 @@ public class WordServlet extends HttpServlet {
                 sb.append("<td><font face='monospace' color='black' size='7'>");
             }
             sb.append(word).append("</font></td>");
-            if (++columnCount == 4) {
+            if (++columnCount == 3) {
                 sb.append("</tr><tr>");
                 columnCount = 0;
             }
@@ -64,9 +64,9 @@ public class WordServlet extends HttpServlet {
         // Actual logic goes here.
         PrintWriter out = response.getWriter();
         out.println("<html><body>\n");
-        out.println("<form action=\"index.jsp\">\n" +
+        out.println("<form action=\"wordlister\">\n" +
                 "    <label>\n" +
-                "        <input name=\"letters\"type=\"text\">\n" +
+                "        <input name=\"letters\" type=\"text\" autocapitalize=\"none\" autocorrect=\"off\" autocomplete=\"off\">" +
                 "    </label><br>\n" +
                 "</form>");
 
