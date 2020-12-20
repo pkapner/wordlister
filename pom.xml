@@ -40,7 +40,7 @@
                 <configuration>
                     <toolchains>
                         <jdk>
-                            <version>10</version>
+                            <version>15</version>
                             <vendor>oracle</vendor>
                         </jdk>
                     </toolchains>
