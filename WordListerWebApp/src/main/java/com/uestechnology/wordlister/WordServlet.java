@@ -72,29 +72,27 @@ public class WordServlet extends HttpServlet {
 
 
         if (request.getParameter("letters") != null) {
-            try {
-                String letters = request.getParameter("letters");
-                wordLister.setLetters(letters.toLowerCase());
 
-                final Set<String> commonCombos = wordLister.findCombos(SetType.SHORT);
-                final Set<String> moreCombos = wordLister.findCombos(SetType.MEDIUM);
-                final Set<String> allCombos = wordLister.findCombos(SetType.LONG);
+            String letters = request.getParameter("letters");
+            wordLister.setLetters(letters.toLowerCase());
 
-                StringBuilder sb = displayWords(commonCombos, moreCombos, allCombos, SetType.SHORT);
-                out.println(sb.toString());
-                out.print("<br><hr><br>");
+            final Set<String> commonCombos = wordLister.findCombos(SetType.SHORT);
+            final Set<String> moreCombos = wordLister.findCombos(SetType.MEDIUM);
+            final Set<String> allCombos = wordLister.findCombos(SetType.LONG);
 
-                sb = displayWords(commonCombos, moreCombos, allCombos, SetType.MEDIUM);
-                out.println(sb.toString());
-                out.print("<br><hr><br>");
+            StringBuilder sb = displayWords(commonCombos, moreCombos, allCombos, SetType.SHORT);
+            out.println(sb.toString());
+            out.print("<br><hr><br>");
+
+            sb = displayWords(commonCombos, moreCombos, allCombos, SetType.MEDIUM);
+            out.println(sb.toString());
+            out.print("<br><hr><br>");
 
 
-                sb = displayWords(commonCombos, moreCombos, allCombos, SetType.LONG);
-                out.println(sb.toString());
-                out.print("<br><hr><br>");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sb = displayWords(commonCombos, moreCombos, allCombos, SetType.LONG);
+            out.println(sb.toString());
+            out.print("<br><hr><br>");
+
         }
         out.println("</body></html>\n");
     }

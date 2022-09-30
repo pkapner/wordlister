@@ -120,7 +120,7 @@ public class WordLister {
         }
     }
 
-    private Set<String> findCombos(SetType type) {
+    public Set<String> findCombos(SetType type) {
 
         Set<String> foundWordSet = new TreeSet<>();
 
@@ -138,7 +138,7 @@ public class WordLister {
 
         for (String word : currentWordSet) {
             boolean badword = false;
-	    String localLetters = letters;
+            String localLetters = letters;
 
             if (word.length() < 3)
                 continue;
@@ -148,8 +148,8 @@ public class WordLister {
                     break;
                 }
 
-		// Remove found letter from our localLetters String
-		localLetters = localLetters.replaceFirst(String.valueOf(word.charAt(i)), "");
+                // Remove found letter from our localLetters String
+                localLetters = localLetters.replaceFirst(String.valueOf(word.charAt(i)), "");
             }
             if (badword)
                 continue;
