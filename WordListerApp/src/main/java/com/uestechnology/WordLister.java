@@ -21,12 +21,12 @@ public class WordLister {
     private static final String ANSI_GREEN = "\u001B[32m";
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_RESET = "\u001B[0m";
-    private Set<String> validWordsShort;
-    private Set<String> validWordsMedium;
-    private Set<String> validWordsLong;
+    private final Set<String> validWordsShort;
+    private final Set<String> validWordsMedium;
+    private final Set<String> validWordsLong;
     private boolean debug = false;
     private String letters;
-    private Map<Integer, Set<Integer>> cachedCombos = new ConcurrentHashMap<>();
+    private final Map<Integer, Set<Integer>> cachedCombos = new ConcurrentHashMap<>();
     private final ExecutorService prePopulateExecutorService;
 
     private WordLister(String letters) throws IOException {
@@ -111,7 +111,7 @@ public class WordLister {
                     break;
                 }
 
-                Character command = 's';
+                char command = 's';
 
                 if (letters.length() > 2) {
                     wordLister.setLetters(letters);
