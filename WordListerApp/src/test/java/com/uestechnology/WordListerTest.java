@@ -9,14 +9,14 @@ import org.junit.Test;
  */
 public class WordListerTest {
 
-
-    @Test
+    /*
+    //    @Test
     public void testGetMaxFourLetters() {
         int result = WordLister.getMax("ABCD");
         Assert.assertEquals(result, 4321);
     }
 
-    @Test
+    //    @Test
     public void testGetMaxFiveLetters() {
         int result = WordLister.getMax("CABCD");
         Assert.assertEquals(result, 54321);
@@ -105,5 +105,5 @@ public class WordListerTest {
     public void testInvalidWordRange2(){
         Assert.assertFalse(WordLister.checkValid(1249, 1234));
     }
-
+    */
 }
