@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class WordServlet extends HttpServlet {
@@ -30,8 +32,10 @@ public class WordServlet extends HttpServlet {
             default:
                 curList = longWords;
         }
+        List<String> printableList = new ArrayList<>(curList);
+        printableList.sort(new WordLister.LengthFirstComparator());
 
-        for (String word : curList) {
+        for (String word : printableList) {
             if (shortWords.contains(word) && type == SetType.MEDIUM) {
                 sb.append("<td><font face='monospace' color='green' size='7'>");
             } else if (shortWords.contains(word) && type == SetType.LONG) {
