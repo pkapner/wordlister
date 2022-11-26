@@ -1,12 +1,15 @@
 package com.uestechnology;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -151,7 +154,21 @@ public class BeeLister {
                 System.out.println(ANSI_RESET + "\n\nMassive list:");
                 BeeLister.displayMassiveWords(commonCombos, moreCombos, allCombos, massiveCombos);
             }
+
+            if (command == 'x') {
+                System.out.println(ANSI_RESET + "\n\nExport Massive list:");
+                try {
+                    BeeLister.exportMassiveWords(commonCombos, moreCombos, allCombos, massiveCombos);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
+    }
+
+    private static void exportMassiveWords(Set<String> commonCombos, Set<String> moreCombos, Set<String> allCombos, Set<String> massiveCombos) throws IOException {
+        exportWords(commonCombos, moreCombos, allCombos, massiveCombos, SetType.MASSIVE);
+
     }
 
     private Set<String> findCombos(SetType type) {
@@ -202,7 +219,7 @@ public class BeeLister {
 
             // Word doesn't contain at least one vowel? out. (sanity check)
             boolean foundVowel = false;
-            for (int i = 0; i < word.length(); i++){
+            for (int i = 0; i < word.length(); i++) {
                 char letter = word.charAt(i);
                 if (vowels.contains(letter)) {
                     foundVowel = true;
@@ -255,6 +272,31 @@ public class BeeLister {
                 columnCount = 0;
             }
         }
+    }
+
+    private static void exportWords(Set<String> shortWords, Set<String> medWords, Set<String> longWords, Set<String> massiveWords, SetType type) throws IOException {
+        int columnCount = 0;
+        Set<String> curList;
+        switch (type) {
+            case SHORT:
+                curList = shortWords;
+                break;
+            case MEDIUM:
+                curList = medWords;
+                break;
+            case LONG:
+                curList = longWords;
+                break;
+            default:
+                curList = massiveWords;
+        }
+
+        BufferedWriter br = new BufferedWriter(new FileWriter("SpellingBee_" + new Date()));
+        for (String word : curList) {
+            br.write(word);
+            br.newLine();
+        }
+        br.close();
     }
 
 
