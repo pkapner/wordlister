@@ -28,25 +28,6 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-toolchains-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>toolchain</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <toolchains>
-                        <jdk>
-                            <version>1.8</version>
-                            <vendor>sun</vendor>
-                        </jdk>
-                    </toolchains>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
                 <configuration>
